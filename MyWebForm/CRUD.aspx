@@ -28,11 +28,14 @@
                         <asp:Button ID="btFind" runat="server" Text="Найти" Width="90px" OnClick="btFind_Click" />
                     </td>
                     <td class="auto-style1"></td>
-                    <td class="auto-style1"></td>
+                    <td class="auto-style1">
+                        <asp:Button ID="Button1" runat="server" Text="EXCEL" OnClick="Button1_Click" />
+                        <asp:Button ID="Button2" runat="server" Text="CSV" OnClick="Button2_Click" />
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="3" class="auto-style1">
-                        <asp:GridView ID="GV" runat="server" CssClass="GridView_With_GridLines" DataKeyNames="id,name"
+                        <asp:GridView ID="GV" runat="server" CssClass="GridView_With_GridLines" DataKeyNames="id"
                             AllowPaging="True" BackColor="White" BorderColor="#3366CC" BorderStyle="None"
                             BorderWidth="1px" CellPadding="4" PageSize="21" AutoGenerateColumns="False">
                             <RowStyle BackColor="White" ForeColor="#003399" />

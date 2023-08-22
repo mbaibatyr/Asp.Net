@@ -22,17 +22,36 @@ namespace MyWebForm
         {
             using (SqlConnection db = new SqlConnection(ConfigurationManager.AppSettings["db"]))
             {
+                db.Open();
                 using (SqlCommand cmd = new SqlCommand("pStudentGetAll", db))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    if(string.IsNullOrEmpty(tbIIN.Text))
+                    if(!string.IsNullOrEmpty(tbIIN.Text))
+                    {
+                        cmd.Parameters.AddWithValue("@iin", tbIIN.Text);
+                    }
+                    DataTable dt = new DataTable();
+                    dt.Load(cmd.ExecuteReader());
+                    GV.DataSource = dt;
+                    GV.DataBind();
                 }
+                db.Close();
             }
         }
 
         protected void btFind_Click(object sender, EventArgs e)
         {
+            fillGrid();
+        }
 
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/File.aspx?param1=excel");
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/File.aspx?param1=csv");
         }
     }
 }
