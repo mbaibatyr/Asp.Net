@@ -1,0 +1,14 @@
+﻿@helper getList(string[] array)
+{
+    foreach (string item in array)
+    {
+        <li>@item</li>
+    }
+}
+
+
+@helper Sum(int a, int b)
+{
+    int z = a + b;
+    <h4>@a + @b = @z</h4>
+}

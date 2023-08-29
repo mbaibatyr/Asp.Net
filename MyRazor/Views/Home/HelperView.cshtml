@@ -1,0 +1,58 @@
+﻿@using MyRazor.Models
+
+@*@ViewBag.Blablabla*@
+<br>
+<br>
+@*@for (int i = 0; i < 10; i++)
+    {
+        @i.ToString()
+        <br>
+    }*@
+@{
+    string st = "hello world";
+    st += "!!!";
+
+    string[] cities = new string[] { "Almaty", "Astana", "Aktau" };
+    string[] colors = new string[] { "black", "white", "yellow" };
+
+    List<Car> lst = (ViewData["lst"] as List<Car>);
+    var count = lst.Count();
+
+    string[] car = new string[count];
+    for (int i = 0; i < lst.Count(); i++)
+    {
+        car[i] = lst[i].BrandModel;
+    }
+
+
+
+}
+
+@*@st
+
+    @foreach (var item in @cities)
+        {
+            @Html.Raw(item + "<br>");
+        }
+
+    @helper Helper_1(string[] lst)
+    {
+        foreach (string item in lst)
+        {
+            <li>@item</li>
+        }
+    }
+
+    <h2>@Helper_1(colors)</h2>
+
+    <h2>@Helper_1(cities)</h2>*@
+
+@*@Helpers.Helper_1.getList(colors)
+    <br>
+    @Helpers.Helper_1.Sum(23, 20)*@
+
+@Helpers.Helper_1.getList(car)
+
+
+
+

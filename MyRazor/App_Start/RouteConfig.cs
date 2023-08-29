@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace MyMVC
+namespace MyRazor
 {
     public class RouteConfig
     {
@@ -16,7 +16,7 @@ namespace MyMVC
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "getCity", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "HelperView", id = UrlParameter.Optional }
             );
         }
     }

@@ -1,7 +1,41 @@
 ﻿@model IEnumerable<MyMVC.Models.City>
 
 
+@{
+    var st = "hello";
+}
 
+<h2>@st</h2>
+
+@for (int i = 0; i < 10; i++)
+{
+    @i.ToString(); <br>
+}
+
+
+@helper Sum(int a, int b)
+{
+    int z = a + b;
+    <h3>@a + @b = @z</h3>
+    //@Html.Raw(z);
+}
+
+@Sum(23, 45)
+
+@{
+    string[] colors = new string[] { "green", "black", "white" };
+    string[] cars = new string[] { "toyota", "ford", "kia" };
+}
+
+@helper Helper_1(string[] lst)
+{
+    foreach (string item in lst)
+    {
+        <li>@item</li>
+    }
+}
+
+<h2>@Helper_1(colors)</h2>
 
 <table class="table">
     <tr>
@@ -11,12 +45,13 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>       
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+    }
 
 </table>
