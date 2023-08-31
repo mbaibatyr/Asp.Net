@@ -12,3 +12,13 @@
     int z = a + b;
     <h4>@a + @b = @z</h4>
 }
+
+
+@helper getListCar(IEnumerable<MyRazor.Models.Car> array)
+{
+    foreach (MyRazor.Models.Car item in array)
+    {
+        <li>@item.BrandModel</li>
+    }
+}
+

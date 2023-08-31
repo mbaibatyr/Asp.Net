@@ -8,37 +8,41 @@
 @*@ViewBag.Blablabla*@
 <br>
 <br>
+
+
 @*@for (int i = 0; i < 10; i++)
     {
         @i.ToString()
         <br>
     }*@
 @{
-string st = "hello world";
-    st += "!!!";
+//string st = "hello world";
+//st += "!!!";
 
-    string[] cities = new string[] { "Almaty", "Astana", "Aktau" };
-    string[] colors = new string[] { "black", "white", "yellow" };
+//string[] cities = new string[] { "Almaty", "Astana", "Aktau" };
+//string[] colors = new string[] { "black", "white", "yellow" };
 
-    List<Car> lst = (ViewData["lst"] as List<Car>);
-    var count = lst.Count();
+//List<Car> lst = (ViewData["lst"] as List<Car>);
+//var count = lst.Count();
 
-    string[] car = new string[count];
-    for (int i = 0; i < lst.Count(); i++)
-    {
-        car[i] = lst[i].BrandModel;
-    }
+//string[] car = new string[count];
+//for (int i = 0; i < lst.Count(); i++)
+//{
+//    car[i] = lst[i].BrandModel;
+//}
+
+
 
 }
 
-@foreach (var item in Model)
+@*@foreach (var item in Model)
 {
     <tr>
         <td>
             @item.BrandModel <br>
         </td>
     </tr>
-}
+}*@
 
 @*@st
 

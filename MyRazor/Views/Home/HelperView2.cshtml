@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MyRazor.Models.Car>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    @item.BrandModel
+    <br>
+}
+
+
+@Helpers.Helper_1.getListCar(Model)
+
+
+@Html.DropDownList("Car", new SelectList(Model.AsEnumerable().Select(z => z.BrandModel)))

@@ -9,4 +9,10 @@ namespace MyRazor.Models
     {
         public string BrandModel { get; set; }
     }
+
+    public class Student
+    {
+        public string lastName { get; set; }
+        public string firstName { get; set; }
+    }
 }

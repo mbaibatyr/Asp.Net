@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MyRazor.Models.Student>
+
+@*@{
+        Layout = null;
+    }*@
+
+
+@foreach (var item in Model)
+{
+    <li>@item.lastName - @item.firstName</li>
+}
+
+@Html.DropDownList("Student",
+    new SelectList(Model.AsEnumerable().Select(z => z.lastName)))
+
+
+@Html.ActionLink("MyContact", "Contact", "Home",
+    //new { name = "hello" },
+    null,
+    new { @class = "btn btn-info" })
+
+<button class="btn btn-info"
+        onclick="location.href='@Url.Action("Contact", "Home", new { name = "step" })'">
+    MyButton123
+</button>
+
+
+<input type="button" class="btn btn-info" value="window.open" onclick="window.open('@Url.Action("Contact", "Home", new { name = "step123" })')" />
+
+
+@Html.ActionLink("_blank", "Contact", "Home", null, new { target = "_blank", @class = "btn btn-danger" })
+
+
+<a class="btn btn-danger" href="/Home/Contact" target="_blank">_blank</a>
+
+
+@*@Html.ActionLink("MyLinkToAbout", "ActLink", "Home",
+    new { id2 = "hello", name = "step" }, new { style = "color:red;", @class = "btn btn-info" })*@

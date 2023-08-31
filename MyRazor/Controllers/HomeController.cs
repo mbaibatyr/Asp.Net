@@ -24,9 +24,9 @@ namespace MyRazor.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(string name)
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = name;
 
             return View();
         }
@@ -40,7 +40,25 @@ namespace MyRazor.Controllers
                 ViewData["lst"] = result;
                 return View(result);
             }
-
         }
+
+        public ActionResult HelperView2()
+        {            
+            using (SqlConnection db = new SqlConnection(ConfigurationManager.AppSettings["db"]))
+            {
+                var result = db.Query<Car>("select brand  + ' - ' + model as BrandModel from car");                
+                return View(result);
+            }
+        }
+
+        public ActionResult getStudent()
+        {
+            using (SqlConnection db = new SqlConnection(ConfigurationManager.AppSettings["db"]))
+            {
+                var result = db.Query<Student>("select lastName, firstName from student");
+                return View(result);
+            }
+        }
+
     }
 }
