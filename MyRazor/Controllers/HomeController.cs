@@ -38,7 +38,7 @@ namespace MyRazor.Controllers
             {
                 var result = db.Query<Car>("select brand  + ' - ' + model as BrandModel from car");
                 ViewData["lst"] = result;
-                return View();
+                return View(result);
             }
 
         }

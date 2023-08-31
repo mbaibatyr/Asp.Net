@@ -1,4 +1,9 @@
-﻿@using MyRazor.Models
+﻿@{
+    Layout = null;
+}
+
+@using MyRazor.Models
+@model IEnumerable<Car>
 
 @*@ViewBag.Blablabla*@
 <br>
@@ -9,7 +14,7 @@
         <br>
     }*@
 @{
-    string st = "hello world";
+string st = "hello world";
     st += "!!!";
 
     string[] cities = new string[] { "Almaty", "Astana", "Aktau" };
@@ -24,8 +29,15 @@
         car[i] = lst[i].BrandModel;
     }
 
+}
 
-
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @item.BrandModel <br>
+        </td>
+    </tr>
 }
 
 @*@st
@@ -49,10 +61,6 @@
 
 @*@Helpers.Helper_1.getList(colors)
     <br>
-    @Helpers.Helper_1.Sum(23, 20)*@
+    @Helpers.Helper_1.Sum(23, 20)
 
-@Helpers.Helper_1.getList(car)
-
-
-
-
+@Helpers.Helper_1.getList(car)*@
