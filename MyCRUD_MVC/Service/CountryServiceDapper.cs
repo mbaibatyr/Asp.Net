@@ -7,6 +7,7 @@ using System.Web;
 using Dapper;
 using System.Data.SqlClient;
 using System.Data;
+using AutoMapper;
 
 namespace MyCRUD_MVC.Service
 {
@@ -20,7 +21,19 @@ namespace MyCRUD_MVC.Service
             {
                 using (SqlConnection db = getConn)
                 {
-                    DynamicParameters p = new DynamicParameters(model);
+                    //DynamicParameters p = new DynamicParameters(model);
+                    //var myModel = new
+                    //{
+                    //    name = model.name,
+                    //    capital = model.capital,
+                    //    population = model.population
+                    //};
+
+                    var config = new MapperConfiguration(cfg => cfg.CreateMap<Country, Country2>());
+                    var mapper = new Mapper(config);
+                    var myModel2 = mapper.Map<Country2>(model);
+
+                    DynamicParameters p = new DynamicParameters(myModel2);
                     result = db.ExecuteScalar<string>("pCountryCreate", p, commandType: CommandType.StoredProcedure);
                 }
             }

@@ -12,4 +12,11 @@ namespace MyCRUD_MVC.Models
         public string capital { get; set; }
         public int population { get; set; }
     }
+
+    public class Country2
+    {
+        public string name { get; set; }
+        public string capital { get; set; }
+        public int population { get; set; }
+    }
 }
