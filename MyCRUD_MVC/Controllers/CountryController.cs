@@ -37,8 +37,13 @@ namespace MyCRUD_MVC.Controllers
         public ActionResult Create(Country model)
         {
             try
-            {
+            {                
                 var result = service.CountryCreate(model);
+                if (result.status == Status.ERROR)
+                {
+                    ModelState.AddModelError("capital", result.error);
+                    return View();
+                }
                 return RedirectToAction("Index");
             }
             catch
