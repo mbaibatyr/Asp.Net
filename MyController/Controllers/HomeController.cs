@@ -55,11 +55,73 @@ namespace MyController.Controllers
         {
             return Json(city);
         }
+
+        [HttpGet, Route("r_7/{a}/{b}")]
+        public int r_7(int a, int b)
+        {
+            return a + b;
+        }
+
+        [HttpPost, Route("r_7_1/{id}")]
+        public int r_7_1(CLass1 cLass1, int id)
+        {
+            var a = int.Parse(cLass1.a);
+            var b = int.Parse(cLass1.b);            
+            return a + b + id;
+        }
+
+        [HttpPut, Route("Put123")]
+        public ActionResult Put123(CLass1 cLass1)
+        {
+            var a = int.Parse(cLass1.a);
+            var b = int.Parse(cLass1.b);
+            return Content(a.ToString());
+        }
+
+        [HttpDelete, Route("r_7_3/{id}")]
+        public ActionResult r_7_3(string id)
+        {
+            //var a = int.Parse(cLass1.a);
+            //var b = int.Parse(cLass1.b);
+            return Content(id);
+        }
+        [HttpPut]
+        [Route("r_7_2")]
+        public int r_7_2(CLass1 cLass1)
+        {
+            return 123;
+        }
+
+
+        [HttpPost, Route("r_7_5")]
+        public ActionResult r_7_5(CLass1 cLass1)
+        {
+            var a = double.Parse(cLass1.a);
+            var b = double.Parse(cLass1.b);
+            var res = a / b;
+            return Content(res.ToString());
+        }
+
+
+
+
+        /*
+            GET - получение данных по url GET_STUDENT/1234
+            post - Добавление
+            put - обновление
+            delete - удаление
+        */
     }
 
     public class City
     {
         public int id { get; set; }
         public string name { get; set; }
+    }
+
+    public class CLass1
+    {
+        public string a { get; set; }
+        public string b { get; set; }
     }
 }
