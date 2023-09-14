@@ -11,7 +11,7 @@ namespace MyController.Controllers
     {
         [HttpGet, Route("r_1/{a}")]
         public string r_1(string a)
-        {            
+        {
             return "Hello " + a;
         }
 
@@ -66,7 +66,7 @@ namespace MyController.Controllers
         public int r_7_1(CLass1 cLass1, int id)
         {
             var a = int.Parse(cLass1.a);
-            var b = int.Parse(cLass1.b);            
+            var b = int.Parse(cLass1.b);
             return a + b + id;
         }
 
@@ -102,6 +102,59 @@ namespace MyController.Controllers
             return Content(res.ToString());
         }
 
+        [HttpPost, Route("r_7_6")]
+        public ActionResult r_7_6(HW hw)
+        {
+            var a = double.Parse(hw.r);
+            var b = double.Parse(hw.p);
+            var res = a / b;
+            return Content(res.ToString());
+        }
+
+        [HttpGet, Route("r_7_7")]
+        public ActionResult r_7_7()
+        {
+            return new EmptyResult();
+        }
+
+        [HttpGet, Route("r_7_8/{a}/{b}")]
+        public ActionResult r_7_8(string a, string b)
+        {
+            if (a == b)
+                return new HttpStatusCodeResult(401);
+            return new HttpStatusCodeResult(407);
+        }
+
+        [HttpGet, Route("r_7_9")]
+        public ActionResult r_7_9()
+        {           
+            return RedirectToAction("MyIndex");
+        }
+
+        [HttpGet, Route("r_8_0/{fileName}")]
+        public ActionResult r_8_0(string fileName)
+        {
+            fileName = fileName + ".xlsx";
+            string path = Server.MapPath("~/Files/") + fileName;
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+            return File(bytes, "application/octet-stream", fileName);
+        }
+
+        [HttpGet, Route("r_8_1")]
+        public ActionResult r_8_1()
+        {
+            return View(new HW());//85%
+        }
+
+
+        [HttpGet]
+        public ActionResult MyIndex()
+        {
+            return View();
+        }
+
+
+
 
 
 
@@ -123,5 +176,11 @@ namespace MyController.Controllers
     {
         public string a { get; set; }
         public string b { get; set; }
+    }
+
+    public class HW
+    {
+        public string p { get; set; }
+        public string r { get; set; }
     }
 }
