@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyAuth.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,26 +7,25 @@ using System.Web.Mvc;
 
 namespace MyAuth.Controllers
 {
-    [Authorize]
-    public class HomeController : Controller
-    {
+    public class AccountController : Controller
+    {        
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        [HttpGet]
+        public ActionResult Login()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        [HttpPost]
+        public ActionResult Login(Users model)
         {
-            ViewBag.Message = "Your contact page.";
-
+            ;
             return View();
         }
+
     }
 }
