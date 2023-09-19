@@ -13,4 +13,25 @@ namespace MyAuth.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
+
+    public class UsersValidateRequest
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+    }
+
+
+    public class UsersValidateResponse
+    {
+        public Status Status { get; set; }
+        public string Error { get; set; }
+        public string Result { get; set; }
+    }
+
+    public enum Status
+    {
+        OK = 1,
+        ERROR = 0
+    }
+
 }
