@@ -13,6 +13,39 @@ namespace MyAuth.Service
 {
     public class UsersService : IUsers
     {
+        public UsersValidateResponse UsersRegistration(UsersValidateRequest request)
+        {
+            try
+            {
+                using (SqlConnection db = new SqlConnection(ConfigurationManager.AppSettings["db"]))
+                {
+                    DynamicParameters p = new DynamicParameters(request);
+                    var result = db.ExecuteScalar<string>("pUsersAdd", p, commandType: CommandType.StoredProcedure);
+                    if (result == "exists")
+                        return new UsersValidateResponse
+                        {
+                            Status = Status.ERROR,
+                            Error = "exists",
+                            Result = "0"
+                        };
+                    return new UsersValidateResponse
+                    {
+                        Status = Status.OK,
+                        Result = "1"
+                    };
+                }
+            }
+            catch (Exception err)
+            {
+                return new UsersValidateResponse
+                {
+                    Status = Status.CRITICAL_ERROR,
+                    Error = err.Message,
+                    Result = "0"
+                };
+            }
+        }
+
         public UsersValidateResponse UsersValidate(UsersValidateRequest request)
         {
             try

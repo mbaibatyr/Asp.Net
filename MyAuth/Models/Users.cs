@@ -31,7 +31,8 @@ namespace MyAuth.Models
     public enum Status
     {
         OK = 1,
-        ERROR = 0
+        ERROR = 0,
+        CRITICAL_ERROR = 2
     }
 
 }

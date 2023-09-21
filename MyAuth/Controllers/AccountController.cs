@@ -50,6 +50,27 @@ namespace MyAuth.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Register(UsersValidateRequest model)
+        {
+            UsersValidateResponse result = service.UsersRegistration(model);
+            if (result.Status == Status.OK)
+                return Redirect("~/Account/Login");
+            ModelState.AddModelError("", "Login already exists");
+            return View();
+        }
+
+
+
+        [HttpGet]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

@@ -10,5 +10,7 @@ namespace MyAuth.Abstract
     internal interface IUsers
     {
         UsersValidateResponse UsersValidate(UsersValidateRequest request);
+
+        UsersValidateResponse UsersRegistration(UsersValidateRequest request);
     }
 }
