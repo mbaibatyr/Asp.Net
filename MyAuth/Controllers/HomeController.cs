@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace MyAuth.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         UsersService service;
@@ -18,10 +18,7 @@ namespace MyAuth.Controllers
             service = new UsersService();
         }
         public ActionResult Index()
-        {
-            //UsersValidateResponse result = 
-            //    service.UsersValidate(new Models.UsersValidateRequest { Login="admin", Password="1234"});
-            //ViewData["status"] = result.Status;
+        {           
             return View();
         }
 
@@ -31,7 +28,7 @@ namespace MyAuth.Controllers
 
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
