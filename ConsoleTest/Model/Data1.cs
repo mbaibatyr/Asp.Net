@@ -26,4 +26,22 @@ namespace ConsoleTest.Model
         public float version { get; set; }
     }
 
+
+
+    public class RootEmployee
+    {
+        public DataEmployee[] data { get; set; }
+
+    }
+
+    public class DataEmployee
+    {
+        public int id { get; set; }
+        public string employee_name { get; set; }
+        public int employee_salary { get; set; }
+        public int employee_age { get; set; }
+        public string profile_image { get; set; }
+    }
+
+
 }
