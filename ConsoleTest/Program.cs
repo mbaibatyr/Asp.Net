@@ -5,6 +5,8 @@ using RestSharp;
 //using System.Text.Json;
 //using System.Text.Json.Serialization;
 using System.Data;
+using System.Data.SqlClient;
+using Dapper;
 
 namespace ConsoleTest
 {
@@ -12,21 +14,30 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            var options = new RestClientOptions("https://dummy.restapiexample.com/api/v1/employees");
-            var client = new RestClient(options);
-            var request = new RestRequest("", Method.Get);
-            var response = client.Execute(request);
+            //var options = new RestClientOptions("https://dummy.restapiexample.com/api/v1/employees");
+            //var client = new RestClient(options);
+            //var request = new RestRequest("", Method.Get);
+            //var response = client.Execute(request);
 
             //if(response.StatusCode == System.Net.HttpStatusCode.OK)
             //{
             //    File.WriteAllText(@"C:\Users\байбатыровм\Desktop\employees.json", response.Content);
             //}
+            
+            string Content = File.ReadAllText(@"C:\Users\байбатыровм\Desktop\employees.json");
 
-            DataTable dt = JsonConvert.DeserializeObject<DataTable>(response.Content);
+            //DataTable dt = JsonConvert.DeserializeObject<DataTable>(response.Content);
+            //DataTable dt = JsonConvert.DeserializeObject<DataTable>(Content);
+            
+            RootEmployee result = JsonConvert.DeserializeObject<RootEmployee>(Content);
 
-            foreach (DataRow row in dt.Rows)
+            using (SqlConnection db = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\байбатыровм\Documents\testDB.mdf;Integrated Security=True;Connect Timeout=30"))
             {
-
+                string sql = "insert into Employees(employee_name, employee_salary) values('{0}', {1})";
+                foreach (var item in result.data)
+                {
+                    db.Execute(string.Format(sql, item.employee_name, item.employee_salary));
+                }
             }
 
 
