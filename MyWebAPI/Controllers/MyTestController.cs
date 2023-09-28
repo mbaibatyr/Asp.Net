@@ -58,7 +58,7 @@ namespace MyWebAPI.Controllers
         [HttpPost, Route("addStudent")]
         public List<Student> addStudent(Student student)
         {
-            var students =  new List<Student>()
+            var students = new List<Student>()
             {
                 new Student
                 {
@@ -77,7 +77,37 @@ namespace MyWebAPI.Controllers
             };
             students.Add(student);
             return students;
+        }
 
+        [HttpPut, Route("changeStudent/{id}")]
+        public List<Student> changeStudent(Student student, int id)
+        {
+            var students = new List<Student>()
+            {
+                new Student
+                {
+                    Id = 1,
+                    LastName = "Иванов",
+                    FirstName = "Аскар",
+                    BirthDate = DateTime.Now.AddYears(-20)
+                },
+                new Student
+                {
+                    Id = 2,
+                    LastName = "Иванов123",
+                    FirstName = "Аскар123",
+                    BirthDate = DateTime.Now.AddYears(-15)
+                }
+            };
+
+            var st = students.Where(z => z.Id == id).FirstOrDefault();
+            if (st != null)
+            {
+                st.FirstName = student.FirstName;
+                st.LastName = student.LastName;
+                st.BirthDate = student.BirthDate;
+            }
+            return students;
         }
     }
 }
