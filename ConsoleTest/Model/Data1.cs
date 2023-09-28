@@ -44,4 +44,22 @@ namespace ConsoleTest.Model
     }
 
 
+
+    public class RootPostResponse
+    {
+        public string status { get; set; }
+        public RootPostResponseData data { get; set; }
+        public string message { get; set; }
+    }
+
+    public class RootPostResponseData
+    {
+        public string name { get; set; }
+        public string salary { get; set; }
+        public string age { get; set; }
+        public int id { get; set; }
+    }
+
+
+
 }

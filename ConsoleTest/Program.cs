@@ -12,35 +12,8 @@ namespace ConsoleTest
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void JsonSample()
         {
-            //var options = new RestClientOptions("https://dummy.restapiexample.com/api/v1/employees");
-            //var client = new RestClient(options);
-            //var request = new RestRequest("", Method.Get);
-            //var response = client.Execute(request);
-
-            //if(response.StatusCode == System.Net.HttpStatusCode.OK)
-            //{
-            //    File.WriteAllText(@"C:\Users\байбатыровм\Desktop\employees.json", response.Content);
-            //}
-            
-            string Content = File.ReadAllText(@"C:\Users\байбатыровм\Desktop\employees.json");
-
-            //DataTable dt = JsonConvert.DeserializeObject<DataTable>(response.Content);
-            //DataTable dt = JsonConvert.DeserializeObject<DataTable>(Content);
-            
-            RootEmployee result = JsonConvert.DeserializeObject<RootEmployee>(Content);
-
-            using (SqlConnection db = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\байбатыровм\Documents\testDB.mdf;Integrated Security=True;Connect Timeout=30"))
-            {
-                string sql = "insert into Employees(employee_name, employee_salary) values('{0}', {1})";
-                foreach (var item in result.data)
-                {
-                    db.Execute(string.Format(sql, item.employee_name, item.employee_salary));
-                }
-            }
-
-
             #region работа с json
             //string json = File.ReadAllText(@"C:\Users\байбатыровм\Desktop\json_sample_2.json");
             //DataTable dt = JsonConvert.DeserializeObject<DataTable>(json);
@@ -93,6 +66,66 @@ namespace ConsoleTest
             //    Console.WriteLine($"{item["id"].ToString()} {item["name"].ToString()} ");
             //}
             #endregion
+        }
+
+        static void GetSample()
+        {
+            //var options = new RestClientOptions("https://dummy.restapiexample.com/api/v1/employees");
+            //var client = new RestClient(options);
+            //var request = new RestRequest("", Method.Get);
+            //var response = client.Execute(request);
+
+            //if(response.StatusCode == System.Net.HttpStatusCode.OK)
+            //{
+            //    File.WriteAllText(@"C:\Users\байбатыровм\Desktop\employees.json", response.Content);
+            //}
+
+            string Content = File.ReadAllText(@"C:\Users\байбатыровм\Desktop\employees.json");
+
+            //DataTable dt = JsonConvert.DeserializeObject<DataTable>(response.Content);
+            //DataTable dt = JsonConvert.DeserializeObject<DataTable>(Content);
+
+            RootEmployee result = JsonConvert.DeserializeObject<RootEmployee>(Content);
+
+            using (SqlConnection db = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\байбатыровм\Documents\testDB.mdf;Integrated Security=True;Connect Timeout=30"))
+            {
+                string sql = "insert into Employees(employee_name, employee_salary) values('{0}', {1})";
+                foreach (var item in result.data)
+                {
+                    db.Execute(string.Format(sql, item.employee_name, item.employee_salary));
+                }
+            }
+        }
+
+        static void PostSample()
+        {
+            var options = new RestClientOptions("https://dummy.restapiexample.com/api/v1/create");
+            var client = new RestClient(options);
+            var request = new RestRequest("", Method.Post);
+            var req = new
+            {
+                name = "test",
+                salary = "123",
+                age = "23"
+            };
+            request.AddJsonBody(req);
+            var response = client.Execute(request);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                RootPostResponse result = JsonConvert.DeserializeObject<RootPostResponse>(response.Content);
+            }
+            else
+            {
+                string Content = File.ReadAllText(@"C:\Users\байбатыровм\Desktop\json_sample_2.json");
+                RootPostResponse result = JsonConvert.DeserializeObject<RootPostResponse>(Content);
+            } 
+            
+        }
+
+
+        static void Main(string[] args)
+        {
+            PostSample();
         }
     }
 }
