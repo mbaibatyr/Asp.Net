@@ -109,5 +109,33 @@ namespace MyWebAPI.Controllers
             }
             return students;
         }
+
+
+        [HttpGet, Route("deleteStudent/{id}")]
+        public List<Student> deleteStudent(int id)
+        {
+            var students = new List<Student>()
+            {
+                new Student
+                {
+                    Id = 1,
+                    LastName = "Иванов",
+                    FirstName = "Аскар",
+                    BirthDate = DateTime.Now.AddYears(-20)
+                },
+                new Student
+                {
+                    Id = 2,
+                    LastName = "Иванов123",
+                    FirstName = "Аскар123",
+                    BirthDate = DateTime.Now.AddYears(-15)
+                }
+            };
+
+            var st = students.Where(z => z.Id == id).FirstOrDefault();
+            if(st != null)
+                students.Remove(st);
+            return students;
+        }
     }
 }
