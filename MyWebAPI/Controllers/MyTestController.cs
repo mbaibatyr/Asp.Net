@@ -9,11 +9,9 @@ namespace MyWebAPI.Controllers
     [ApiController]
     public class MyTestController : ControllerBase
     {
+
         public IConfiguration Configuration { get; }
-        public MyTestController(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+
         
 
         [HttpGet, Route("Hello/{name}")]
