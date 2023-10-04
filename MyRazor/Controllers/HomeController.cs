@@ -60,5 +60,16 @@ namespace MyRazor.Controllers
             }
         }
 
+
+        public ActionResult getCity()
+        {
+            using (SqlConnection db = new SqlConnection(ConfigurationManager.AppSettings["db"]))
+            {
+                var result = db.Query<string>("select Name from vCountryCity");
+                ViewData["array"] = new string[] { "qwe", "asd", "zxc"};
+                return View(result);
+            }
+        }
+
     }
 }

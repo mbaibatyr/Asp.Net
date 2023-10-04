@@ -1,0 +1,23 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "getCity";
+}
+
+<h2>getCity</h2>
+
+@{
+    var res = ViewData["array"] as string[];
+}
+
+
+@Html.DropDownList("Car", new SelectList(Model))
+
+
+@Helpers.Helper_1.getList(new string[] { "Абай", "Айжан", "Томирис" })
+
+@Helpers.Helper_1.getList(Model.ToArray())
+
+
+@Helpers.Helper_1.getList(res)
+
+@Html.DropDownList("Car", new SelectList(res))

@@ -16,7 +16,7 @@ namespace MyRazor
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "getStudent", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "getCity", id = UrlParameter.Optional }
             );
         }
     }

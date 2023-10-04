@@ -169,6 +169,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\HelperView2.cshtml" />
     <Content Include="Views\Home\getStudent.cshtml" />
+    <Content Include="Views\Home\getCity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
