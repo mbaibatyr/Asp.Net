@@ -41,6 +41,8 @@ namespace MyLibrary
 
             app.MapControllers();
 
+            app.UseCors();
+
             app.Run();
         }
     }
