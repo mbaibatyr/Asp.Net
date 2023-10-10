@@ -14,7 +14,27 @@ namespace MyLibrary.Service
 
         public ResultStatus BookAddOrEdit(Book book)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var db = getConn)
+                {
+                    DynamicParameters p = new DynamicParameters(book);
+                    var result = db.ExecuteScalar<string>("pBookAddOrEdit", p, commandType: CommandType.StoredProcedure);
+                    return new ResultStatus
+                    {
+                        status = StatusEnum.OK,
+                        result = result
+                    };
+                }
+            }
+            catch (Exception err)
+            {
+                return new ResultStatus
+                {
+                    status = StatusEnum.ERROR,
+                    result = err.Message
+                };
+            }
         }
 
         public ResultStatus BookDelete(string id)
