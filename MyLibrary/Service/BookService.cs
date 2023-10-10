@@ -39,7 +39,26 @@ namespace MyLibrary.Service
 
         public ResultStatus BookDelete(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var db = getConn)
+                {
+                    var result = db.Execute("pBookDelete", new { @id  = id}, commandType: CommandType.StoredProcedure);
+                    return new ResultStatus
+                    {
+                        status = StatusEnum.OK,
+                        result = "ok"
+                    };
+                }
+            }
+            catch (Exception err)
+            {
+                return new ResultStatus
+                {
+                    status = StatusEnum.ERROR,
+                    result = err.Message
+                };
+            }
         }
 
         public IEnumerable<BookAuthorCategoryVM> BookGetAll(string title)

@@ -22,10 +22,16 @@ namespace MyLibrary.Controllers
             return Ok(service.BookGetAll(title));
         }
 
-        [HttpGet, Route("BookAddOrEdit")]
+        [HttpPost, Route("BookAddOrEdit")]
         public ActionResult BookAddOrEdit(Book book)
         {
             return Ok(service.BookAddOrEdit(book));
+        }
+
+        [HttpGet, Route("BookDelete/{id}")]
+        public ActionResult BookDelete(string id)
+        {
+            return Ok(service.BookDelete(id));
         }
     }
 }
