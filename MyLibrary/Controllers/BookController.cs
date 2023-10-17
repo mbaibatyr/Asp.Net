@@ -33,5 +33,17 @@ namespace MyLibrary.Controllers
         {
             return Ok(service.BookDelete(id));
         }
+
+        [HttpGet, Route("AuthorSelect")]
+        public ActionResult AuthorSelect()
+        {
+            return Ok(service.AuthorSelect());
+        }
+
+        [HttpGet, Route("CategorySelect")]
+        public ActionResult CategorySelect()
+        {
+            return Ok(service.CategorySelect());
+        }
     }
 }
