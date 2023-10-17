@@ -12,6 +12,14 @@ namespace MyLibrary.Service
         {
         }
 
+        public IEnumerable<ListSelect> AuthorSelect()
+        {
+            using (var db = getConn)
+            {
+                return db.Query<ListSelect>("pAuthorSelect", commandType: CommandType.StoredProcedure);
+            }
+        }
+
         public ResultStatus BookAddOrEdit(Book book)
         {
             try
@@ -66,6 +74,14 @@ namespace MyLibrary.Service
             using (var db = getConn)
             {
                 return db.Query<BookAuthorCategoryVM>("pBookGetAll", new { @title = title }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public IEnumerable<ListSelect> CategorySelect()
+        {
+            using (var db = getConn)
+            {
+                return db.Query<ListSelect>("pCategorySelect", commandType: CommandType.StoredProcedure);
             }
         }
     }

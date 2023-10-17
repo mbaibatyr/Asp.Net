@@ -8,4 +8,10 @@
         public string year { get; set; }
         public string category_id { get; set; }
     }
+
+    public class ListSelect
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+    }
 }
