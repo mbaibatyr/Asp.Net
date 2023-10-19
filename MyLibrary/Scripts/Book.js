@@ -42,6 +42,8 @@ $(document).ready(function () {
         html += "<td class='text-center'>year</td>";
         html += "<td class='text-center'>fio</td>";
         html += "<td class='text-center'>category_name</td>";
+        html += "<td class='text-center'>delete</td>";
+        html += "<td class='text-center'>edit</td>";
         html += "</tr>";
         //html += "</table>";
 
@@ -51,12 +53,20 @@ $(document).ready(function () {
                 url: "http://localhost:5064/Book/BookGetAll/" + title,
                 success: function (data) {                                        
                     $.each(data, function (i, item) {
+                        var del = "<button onclick='del(" + item.id + ")'>Delete</button>";
+                        var edit = "<button onclick='edit(" + item.id + ")'>Edit</button>";
                         html += "<tr><td>" + item.id + "</td>" +
                             "<td>" + item.title + "</td>" +
                             "<td>" + item.year + "</td>" +
                             "<td>" + item.fio + "</td>" +
-                            "<td>" + item.category_name + "</td></tr>";
+                            "<td>" + item.category_name + "</td>" +
+                            "<td>" + del + "</td>" +
+                            "<td>" + edit + "</td></tr>";
                     });
+                    /*
+                     
+                     
+                     */
                     html += "</table >";
                     //console.log(html);
                     $("#tableBook").html(html);
@@ -69,6 +79,32 @@ $(document).ready(function () {
         
     });
 });
+
+
+function del(id) {
+    $.confirm({
+        title: 'Are you sure to delete book!',
+        content: 'Deletion!',
+        buttons: {
+            confirm: function () {
+                //$.alert('go to delete');
+
+            },
+            cancel: function () {
+                //$.alert('cancel delete!');
+            }            
+        }
+    });
+}
+
+function edit(id) {    
+    $("#exampleModal").modal("show");
+}
+
+
+function refreshBook() {
+    
+}
 
 /*
  
