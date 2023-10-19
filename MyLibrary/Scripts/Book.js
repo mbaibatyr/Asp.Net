@@ -1,35 +1,37 @@
 $(document).ready(function () {
     $("#btTest").click(function () {
-        $.ajax
-            ({
-                type: "GET",                
-                url: "http://localhost:5064/Book/AuthorSelect",
-                success: function (data) {
-                    $("#cbAuthor").empty();
-                    for (let i = 0; i < data.length; i++) {
-                        $("#cbAuthor").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
-                    };
-                },
-                error: function () {
-                    console.log("error")
-                }
-            });
+        //$.ajax
+        //    ({
+        //        type: "GET",
+        //        url: "http://localhost:5064/Book/AuthorSelect",
+        //        success: function (data) {
+        //            $("#cbAuthor").empty();
+        //            for (let i = 0; i < data.length; i++) {
+        //                $("#cbAuthor").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
+        //            };
+        //        },
+        //        error: function () {
+        //            console.log("error")
+        //        }
+        //    });
 
-        $.ajax
-            ({
-                type: "GET",
-                url: "http://localhost:5064/Book/CategorySelect",
-                success: function (data) {
-                    $("#cbCategory").empty();
-                    for (let i = 0; i < data.length; i++) {
-                        $("#cbCategory").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
-                    };
-                },
-                error: function () {
-                    console.log("error")
-                }
-            });
+        //$.ajax
+        //    ({
+        //        type: "GET",
+        //        url: "http://localhost:5064/Book/CategorySelect",
+        //        success: function (data) {
+        //            $("#cbCategory").empty();
+        //            for (let i = 0; i < data.length; i++) {
+        //                $("#cbCategory").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
+        //            };
+        //        },
+        //        error: function () {
+        //            console.log("error")
+        //        }
+        //    });
 
+
+        var title = $("#tbTitle").val() == '' ? 'all' : $("#tbTitle").val();
 
         let html = '';
         //$("#tableBook").html('');
@@ -46,11 +48,14 @@ $(document).ready(function () {
         $.ajax
             ({
                 type: "GET",
-                url: "http://localhost:5064/Book/BookGetAll/all",
+                url: "http://localhost:5064/Book/BookGetAll/" + title,
                 success: function (data) {                                        
                     $.each(data, function (i, item) {
                         html += "<tr><td>" + item.id + "</td>" +
-                                "<td>" + item.title + "</td></tr>";
+                            "<td>" + item.title + "</td>" +
+                            "<td>" + item.year + "</td>" +
+                            "<td>" + item.fio + "</td>" +
+                            "<td>" + item.category_name + "</td></tr>";
                     });
                     html += "</table >";
                     //console.log(html);
