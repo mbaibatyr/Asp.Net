@@ -41,10 +41,26 @@ $(document).ready(function () {
         html += "<td class='text-center'>fio</td>";
         html += "<td class='text-center'>category_name</td>";
         html += "</tr>";
-        html += "<tr>";
-        html += "<td>1</td><td>Astana</td>";
-        html += "</tr>";
-        html += "</table>";
-        $("#tableBook").html(html);
+        //html += "</table>";
+
+        $.ajax
+            ({
+                type: "GET",
+                url: "http://localhost:5064/Book/BookGetAll/all",
+                success: function (data) {                                        
+                    $.each(data, function (i, item) {
+                        html += "<tr><td>" + item.id + "</td>" +
+                                "<td>" + item.title + "</td></tr>";
+                    });
+                    html += "</table >";
+                    //console.log(html);
+                    $("#tableBook").html(html);
+                },
+                error: function () {
+                    console.log("error")
+                }
+            });
+
+        
     });
 });
