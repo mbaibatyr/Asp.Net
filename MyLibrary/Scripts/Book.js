@@ -31,12 +31,15 @@ $(document).ready(function () {
             });
 
 
-        let html;
-        $("#tableBook").html('');
-
-        html += "<table>";
-        html += "<tr>";
-        html += "<td>id</td><td>name</td>";
+        let html = '';
+        //$("#tableBook").html('');
+        html += "<table border='1' cellpadding='1' cellspacing='1' width='500'>";
+        html += "<tr bgcolor='#ffd400'>";
+        html += "<td class='text-center'>id</td>"
+        html += "<td class='text-center'>title</td>";
+        html += "<td class='text-center'>year</td>";
+        html += "<td class='text-center'>fio</td>";
+        html += "<td class='text-center'>category_name</td>";
         html += "</tr>";
         html += "<tr>";
         html += "<td>1</td><td>Astana</td>";
