@@ -77,6 +77,34 @@ $(document).ready(function () {
                 }
             });
     });
+
+    $("#btEdit").click(function () {
+        var MyData = {
+
+            "id": 0,
+            "title": "string",
+            "author_id": "string",
+            "year": "string",
+            "category_id": "string"
+
+        };
+        $.ajax
+            ({
+                type: "POST",
+                url: "http://localhost:51804/key/addProcessHistory",
+                data: MyData,
+                success: function (data) {
+                },
+                error: function () {
+                    console.log("error")
+                }
+            });
+
+
+    });
+    
+
+   
 });
 
 
@@ -108,7 +136,10 @@ function edit(id) {
                 $("#year").val(data.year);
 
                 $("#cbAuthor").val(data.author_id);
-                $("#cbCategory").val(data.category_id);                
+                $("#cbCategory").val(data.category_id);
+
+                $("#book_id").val(data.id);
+                
             },
             error: function () {
                 console.log("error")
