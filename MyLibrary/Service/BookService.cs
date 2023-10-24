@@ -77,6 +77,14 @@ namespace MyLibrary.Service
             }
         }
 
+        public Book BookGetById(string id)
+        {
+            using (var db = getConn)
+            {
+                return db.Query<Book>("BookGetById", new { id = id }, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+        }
+
         public IEnumerable<ListSelect> CategorySelect()
         {
             using (var db = getConn)

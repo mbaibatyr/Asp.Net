@@ -10,5 +10,6 @@ namespace MyLibrary.Abstract
         ResultStatus BookDelete(string id);
         IEnumerable<ListSelect> AuthorSelect();
         IEnumerable<ListSelect> CategorySelect();
+        Book BookGetById(string id);
     }
 }

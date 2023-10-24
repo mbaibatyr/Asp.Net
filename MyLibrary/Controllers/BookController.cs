@@ -45,5 +45,11 @@ namespace MyLibrary.Controllers
         {
             return Ok(service.CategorySelect());
         }
+
+        [HttpGet, Route("BookGetById/{id}")]
+        public ActionResult BookGetById(string id)
+        {
+            return Ok(service.BookGetById(id));
+        }
     }
 }
