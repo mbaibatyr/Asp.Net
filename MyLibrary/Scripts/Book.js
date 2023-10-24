@@ -79,21 +79,27 @@ $(document).ready(function () {
     });
 
     $("#btEdit").click(function () {
+
         var MyData = {
-
-            "id": 0,
-            "title": "string",
-            "author_id": "string",
-            "year": "string",
-            "category_id": "string"
-
+            "id": $("#book_id").val(),
+            "title": $("#title").val(),
+            "author_id": $("#cbAuthor").val(),
+            "year": $("#year").val(),
+            "category_id": $("#cbCategory").val()
         };
+
+        console.log(MyData);
+
         $.ajax
             ({
                 type: "POST",
-                url: "http://localhost:51804/key/addProcessHistory",
-                data: MyData,
+                headers: {                    
+                    'Content-Type': 'application/json'
+                },
+                url: "http://localhost:5064/Book/BookAddOrEdit",
+                data: JSON.stringify(MyData),                
                 success: function (data) {
+                    alert(data.result);
                 },
                 error: function () {
                     console.log("error")
