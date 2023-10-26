@@ -1,34 +1,34 @@
 $(document).ready(function () {
     //$("#btFill").click(function () {
-    $.ajax
-        ({
-            type: "GET",
-            url: "http://localhost:5064/Book/AuthorSelect",
-            success: function (data) {
-                $("#cbAuthor").empty();
-                for (let i = 0; i < data.length; i++) {
-                    $("#cbAuthor").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
-                };
-            },
-            error: function () {
-                console.log("error")
-            }
-        });
+    //$.ajax
+    //    ({
+    //        type: "GET",
+    //        url: "http://localhost:5064/Book/AuthorSelect",
+    //        success: function (data) {
+    //            $("#cbAuthor").empty();
+    //            for (let i = 0; i < data.length; i++) {
+    //                $("#cbAuthor").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
+    //            };
+    //        },
+    //        error: function () {
+    //            console.log("error")
+    //        }
+    //    });
 
-    $.ajax
-        ({
-            type: "GET",
-            url: "http://localhost:5064/Book/CategorySelect",
-            success: function (data) {
-                $("#cbCategory").empty();
-                for (let i = 0; i < data.length; i++) {
-                    $("#cbCategory").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
-                };
-            },
-            error: function () {
-                console.log("error")
-            }
-        });
+    //$.ajax
+    //    ({
+    //        type: "GET",
+    //        url: "http://localhost:5064/Book/CategorySelect",
+    //        success: function (data) {
+    //            $("#cbCategory").empty();
+    //            for (let i = 0; i < data.length; i++) {
+    //                $("#cbCategory").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
+    //            };
+    //        },
+    //        error: function () {
+    //            console.log("error")
+    //        }
+    //    });
     //});
 
     $("#btFind").click(function () {
@@ -131,7 +131,7 @@ function del(id) {
 }
 
 function edit(id) {
-    //$("#exampleModal").modal("show");
+    
     $.ajax
         ({
             type: "GET",
@@ -156,8 +156,10 @@ function edit(id) {
 
 
 function refreshBook() {
-
+    $("#exampleModal").modal("show");
 }
+
+
 
 /*
  
