@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ClosedXML.Excel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyLibrary.Abstract;
 using MyLibrary.Model;
@@ -50,6 +51,33 @@ namespace MyLibrary.Controllers
         public ActionResult BookGetById(string id)
         {
             return Ok(service.BookGetById(id));
+        }
+
+
+        [HttpGet, Route("getExcel")]
+        public ActionResult getExcel()
+        {
+            byte[] content = null;
+            var result = service.BookGetAll("all");
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("MySample");
+                worksheet.Cell(1, 1).Value = "id";
+                worksheet.Cell(1, 2).Value = "title";
+                worksheet.Cell(1, 3).Value = "year";
+                worksheet.Cell(1, 4).Value = "fio";
+                worksheet.Cell(1, 5).Value = "category_name";
+
+                worksheet.Cell(2, 1).InsertData(result);                
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    workbook.SaveAs(ms);
+                    content = ms.ToArray();
+                }
+            }
+            return File(content,
+                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                 "Processes.xlsx");
         }
     }
 }

@@ -130,8 +130,7 @@ function del(id) {
     });
 }
 
-function edit(id) {
-    
+function edit(id) {    
     $.ajax
         ({
             type: "GET",
