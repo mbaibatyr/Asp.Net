@@ -1,34 +1,34 @@
 $(document).ready(function () {
     //$("#btFill").click(function () {
-    //$.ajax
-    //    ({
-    //        type: "GET",
-    //        url: "http://localhost:5064/Book/AuthorSelect",
-    //        success: function (data) {
-    //            $("#cbAuthor").empty();
-    //            for (let i = 0; i < data.length; i++) {
-    //                $("#cbAuthor").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
-    //            };
-    //        },
-    //        error: function () {
-    //            console.log("error")
-    //        }
-    //    });
+    $.ajax
+        ({
+            type: "GET",
+            url: "http://localhost:5064/Book/AuthorSelect",
+            success: function (data) {
+                $("#cbAuthor").empty();
+                for (let i = 0; i < data.length; i++) {
+                    $("#cbAuthor").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
+                };
+            },
+            error: function () {
+                console.log("error")
+            }
+        });
 
-    //$.ajax
-    //    ({
-    //        type: "GET",
-    //        url: "http://localhost:5064/Book/CategorySelect",
-    //        success: function (data) {
-    //            $("#cbCategory").empty();
-    //            for (let i = 0; i < data.length; i++) {
-    //                $("#cbCategory").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
-    //            };
-    //        },
-    //        error: function () {
-    //            console.log("error")
-    //        }
-    //    });
+    $.ajax
+        ({
+            type: "GET",
+            url: "http://localhost:5064/Book/CategorySelect",
+            success: function (data) {
+                $("#cbCategory").empty();
+                for (let i = 0; i < data.length; i++) {
+                    $("#cbCategory").append('<option value=' + data[i].id + '>' + data[i].name + '</option >');
+                };
+            },
+            error: function () {
+                console.log("error")
+            }
+        });
     //});
 
     $("#btFind").click(function () {
@@ -151,14 +151,40 @@ function edit(id) {
                 console.log("error")
             }
         });
-
+    $("#myModal").modal("show");
 }
 
 
 function refreshBook() {
-    $("#exampleModal").modal("show");
+    $("#myModal").modal("show");
 }
+function Edit2() {
+    $("#myModal").modal("hide");
+    var MyData = {
+        "id": $("#book_id").val(),
+        "title": $("#title").val(),
+        "author_id": $("#cbAuthor").val(),
+        "year": $("#year").val(),
+        "category_id": $("#cbCategory").val()
+    };
 
+    $.ajax
+        ({
+            type: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            url: "http://localhost:5064/Book/BookAddOrEdit",
+            data: JSON.stringify(MyData),
+            success: function (data) {
+                alert(data.result);
+            },
+            error: function () {
+                console.log("error")
+            }
+        });
+
+};
 
 
 /*
