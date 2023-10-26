@@ -93,11 +93,11 @@ $(document).ready(function () {
         $.ajax
             ({
                 type: "POST",
-                headers: {                    
+                headers: {
                     'Content-Type': 'application/json'
                 },
                 url: "http://localhost:5064/Book/BookAddOrEdit",
-                data: JSON.stringify(MyData),                
+                data: JSON.stringify(MyData),
                 success: function (data) {
                     alert(data.result);
                 },
@@ -108,11 +108,9 @@ $(document).ready(function () {
 
 
     });
-    
 
    
 });
-
 
 function del(id) {
     $.confirm({
@@ -153,7 +151,6 @@ function edit(id) {
     $("#myModal").modal("show");
 }
 
-
 function refreshBook() {
     $("#myModal").modal("show");
 }
@@ -184,6 +181,12 @@ function Edit2() {
         });
 
 };
+
+function getExcel() {
+    window.open("http://localhost:5064/Book/getExcel");    
+}
+
+
 
 
 /*

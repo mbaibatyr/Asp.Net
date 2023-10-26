@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTest", "ConsoleTest\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddConsole", "AddConsole\AddConsole.csproj", "{B9EF074D-DF98-4700-93B5-019A5FB79DD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLibrary", "MyLibrary\MyLibrary.csproj", "{40C85863-F572-47D4-B719-49375A9B4786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLibrary", "MyLibrary\MyLibrary.csproj", "{40C85863-F572-47D4-B719-49375A9B4786}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyReact", "MyReact\MyReact.csproj", "{6085A694-1EA3-4707-AA05-84BF6A680253}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{40C85863-F572-47D4-B719-49375A9B4786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40C85863-F572-47D4-B719-49375A9B4786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40C85863-F572-47D4-B719-49375A9B4786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6085A694-1EA3-4707-AA05-84BF6A680253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6085A694-1EA3-4707-AA05-84BF6A680253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6085A694-1EA3-4707-AA05-84BF6A680253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6085A694-1EA3-4707-AA05-84BF6A680253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
