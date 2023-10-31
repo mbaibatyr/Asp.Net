@@ -1,5 +1,5 @@
-// import React, { Component } from 'react';
 import React, { useState, useEffect } from 'react';
+import { Button, Space, Table } from 'antd';
 
 const columns = [
   {
@@ -31,6 +31,8 @@ const columns = [
 
 const Home = () => {
 
+  const [data, setData] = useState([]);
+
   const fetchData = () => {
     const requestOptions = {
       method: 'GET',
@@ -41,8 +43,7 @@ const Home = () => {
         return response.json()
       })
       .then(data => {
-        console.log(data);
-        //setData(data);
+        setData(data);
       })
   }
 
@@ -53,6 +54,19 @@ const Home = () => {
   return (
     <div>
       here crud
+      <Table
+        dataSource={data}
+        columns={columns}
+        // pagination={{
+        //   position: ["topRight"],
+        //   showSizeChanger: true,
+        //   defaultPageSize: 15,
+        //   pageSizeOptions: ["15", "30", "50", "100", "200"]
+        // }}
+        pagination={false}
+        size='small'
+
+      />;
     </div>
   )
 }
