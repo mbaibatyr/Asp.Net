@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Space, Table } from 'antd';
-import { AppleOutlined  } from '@ant-design/icons';
+import { AppleOutlined } from '@ant-design/icons';
 import 'antd/dist/reset.css';
 
 const dataSource = [
