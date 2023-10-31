@@ -1,5 +1,5 @@
 // import React, { Component } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const columns = [
   {
@@ -45,6 +45,10 @@ const Home = () => {
         //setData(data);
       })
   }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
