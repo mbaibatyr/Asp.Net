@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Space, Table, Input, Tooltip } from 'antd';
+import { Button, Space, Table, Input, Tooltip, Modal } from 'antd';
 import { FileAddOutlined } from '@ant-design/icons';
 const columns = [
   {
@@ -33,6 +33,11 @@ const Home = () => {
 
   const [data, setData] = useState([]);
   const [title, setTitle] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const BookAddOrEdit = () => {
+
+  }
 
   const fetchData = () => {
     var titleTemp;
@@ -60,6 +65,18 @@ const Home = () => {
 
   return (
     <div>
+      <Modal title="Basic Modal"
+        open={isModalOpen}
+        onOk={() => {
+          BookAddOrEdit();
+          setIsModalOpen(false);
+        }}
+        onCancel={() => {
+          setIsModalOpen(false);
+        }}>
+
+
+      </Modal>
       <Space
         direction='horizontal'
       >
@@ -80,7 +97,10 @@ const Home = () => {
           Найти
         </Button>
 
-        <Tooltip title="Добавление новой книги">
+        <Tooltip
+          title="Добавление новой книги"
+          color='red'
+        >
           <Button
             icon={<FileAddOutlined />}
             onClick={() => {
