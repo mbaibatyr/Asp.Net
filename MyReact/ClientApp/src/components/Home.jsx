@@ -1,62 +1,72 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Space, Table, Input, Tooltip, Modal } from 'antd';
+import { Button, Space, Table, Input, Tooltip, Modal, message, notification } from 'antd';
 import { FileAddOutlined, EditOutlined } from '@ant-design/icons';
-const columns = [
-  {
-    title: 'id',
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: 'title',
-    dataIndex: 'title',
-    key: 'title'
-  },
-  {
-    title: 'year',
-    dataIndex: 'year',
-    key: 'year'
-  },
-  {
-    title: 'fio',
-    dataIndex: 'fio',
-    key: 'fio'
-  },
-  {
-    title: 'category_name',
-    dataIndex: 'category_name',
-    key: 'category_name'
-  },
-  {
-    title: 'Edit',
-    key: 'edit',
-    width: '3%',
-    render: (row) => {
-      return <>
-        <EditOutlined
-          onClick={(e) => {
-            e.preventDefault();
-
-            //setMode('edit');
-            //setRowId(row.id);
-
-            //setIsModalOpen(true);
-          }}
-          style={{
-            color: "green", marginLeft: 5
-          }}>
-        </EditOutlined>
-      </>
-    }
-  },
-]
+import { Label } from 'reactstrap';
 
 const Home = () => {
+  const columns = [
+    {
+      title: 'id',
+      dataIndex: 'id',
+      key: 'id',
+    },
+    {
+      title: 'title',
+      dataIndex: 'title',
+      key: 'title'
+    },
+    {
+      title: 'year',
+      dataIndex: 'year',
+      key: 'year'
+    },
+    {
+      title: 'fio',
+      dataIndex: 'fio',
+      key: 'fio'
+    },
+    {
+      title: 'category_name',
+      dataIndex: 'category_name',
+      key: 'category_name'
+    },
+    {
+      title: 'Edit',
+      key: 'edit',
+      width: '3%',
+      render: (row) => {
+        return <>
+          <EditOutlined
+            onClick={(e) => {
+              e.preventDefault();
+              setMode('edit');
+              setRowId(row.id);
+              setIsModalOpen(true);
 
+              notification.info({
+                message: "Info",
+                description: (row.id)
+              });
+
+            }}
+            style={{
+              color: "green", marginLeft: 5
+            }}>
+          </EditOutlined>
+        </>
+      }
+    },
+  ]
   const [data, setData] = useState([]);
   const [title, setTitle] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [titleAdd, setTitleAdd] = useState('');
+
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mode, setMode] = useState('');
+  const [rowId, setRowId] = useState('');
   const BookAddOrEdit = () => {
 
   }
@@ -87,7 +97,7 @@ const Home = () => {
 
   return (
     <div>
-      <Modal title="Basic Modal"
+      <Modal title={mode}
         open={isModalOpen}
         onOk={() => {
           BookAddOrEdit();
@@ -96,7 +106,25 @@ const Home = () => {
         onCancel={() => {
           setIsModalOpen(false);
         }}>
+        <Space
+          direction='vertical'
+        >
+          <Space
+            direction='horizontal'
+          >
+            <Label>Название</Label>
+            <Input
+              placeholder="Название книги"
+              value={titleAdd}
+              onChange={(e) => setTitleAdd(e.target.value)}
+              style={{
+                width: 300
+              }}
+            />
+          </Space>
 
+
+        </Space>
 
       </Modal>
       <Space
@@ -126,6 +154,7 @@ const Home = () => {
           <Button
             icon={<FileAddOutlined />}
             onClick={() => {
+              setMode('add');
               setIsModalOpen(true);
             }}
             style={{
