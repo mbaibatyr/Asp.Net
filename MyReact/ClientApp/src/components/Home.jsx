@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Space, Table, Input } from 'antd';
-
+import { Button, Space, Table, Input, Tooltip } from 'antd';
+import { FileAddOutlined } from '@ant-design/icons';
 const columns = [
   {
     title: 'id',
@@ -80,6 +80,18 @@ const Home = () => {
           Найти
         </Button>
 
+        <Tooltip title="Добавление новой книги">
+          <Button
+            icon={<FileAddOutlined />}
+            onClick={() => {
+              fetchData();
+            }}
+            style={{
+              color: 'green'
+            }}
+          >
+          </Button>
+        </Tooltip>
       </Space>
       <Table
         dataSource={data}
