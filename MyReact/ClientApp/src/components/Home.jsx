@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Space, Table, Input, Tooltip, Modal, message, notification, Select } from 'antd';
 import { FileAddOutlined, EditOutlined } from '@ant-design/icons';
 import { Label } from 'reactstrap';
+const { Option } = Select;
 
 const Home = () => {
   const columns = [
@@ -60,8 +61,22 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [title, setTitle] = useState('');
 
+
   const [titleAdd, setTitleAdd] = useState('');
   const [yearAdd, setYearAdd] = useState('');
+
+  const [authorDataAdd, setAuthorDataAdd] = useState([]);
+  const [authorAdd, setAuthorAdd] = useState('');
+  const handleChangeAuthorAdd = (value) => {
+    setAuthorAdd(value);
+  };
+
+  const [catDataAdd, setCatDataAdd] = useState([]);
+  const [catAdd, setCatAdd] = useState('');
+  const handleChangeCatAdd = (value) => {
+    setCatAdd(value);
+  };
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mode, setMode] = useState('');
@@ -90,8 +105,32 @@ const Home = () => {
       })
   }
 
+  const FillLists = () => {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    };
+
+    fetch(`http://localhost:5064/Book/AuthorSelect`, requestOptions)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setAuthorDataAdd(data);
+      })
+
+
+    fetch(`http://localhost:5064/Book/CategorySelect`, requestOptions)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setCatDataAdd(data);
+      })
+  }
+
   useEffect(() => {
-    // fetchData();
+    FillLists();
   }, []);
 
   return (
@@ -146,14 +185,14 @@ const Home = () => {
               }}
               showSearch
               status="success"
-              //value={epicAdd}
+              value={authorAdd}
               optionFilterProp="children"
-              //onChange={handleChangeEpicAdd}
+              onChange={handleChangeAuthorAdd}
               filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
-              {/* {epicDataAdd.map((z) => (
-                <Option key={z.value}>{z.text}</Option>
-              ))} */}
+              {authorDataAdd.map((z) => (
+                <Option key={z.id}>{z.name}</Option>
+              ))}
             </Select>
 
           </Space>
@@ -168,14 +207,14 @@ const Home = () => {
               }}
               showSearch
               status="success"
-              //value={epicAdd}
+              value={catAdd}
               optionFilterProp="children"
-              //onChange={handleChangeEpicAdd}
+              onChange={handleChangeCatAdd}
               filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
             >
-              {/* {epicDataAdd.map((z) => (
-                <Option key={z.value}>{z.text}</Option>
-              ))} */}
+              {catDataAdd.map((z) => (
+                <Option key={z.id}>{z.name}</Option>
+              ))}
             </Select>
 
           </Space>
