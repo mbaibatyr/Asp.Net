@@ -35,11 +35,17 @@ const Home = () => {
   const [title, setTitle] = useState('');
 
   const fetchData = () => {
+    var titleTemp;
+    if (title == '')
+      titleTemp = 'all';
+    else
+      titleTemp = title;
+
     const requestOptions = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
     };
-    fetch(`http://localhost:5064/Book/BookGetAll/all`, requestOptions)
+    fetch(`http://localhost:5064/Book/BookGetAll/${titleTemp}`, requestOptions)
       .then(response => {
         return response.json()
       })
@@ -49,7 +55,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
   }, []);
 
   return (
@@ -59,12 +65,18 @@ const Home = () => {
       >
         <Input
           placeholder="Название книги"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           style={{
             width: 300, backgroundColor: 'yellow', color: 'green', fontWeight: 'bold'
           }}
         />
 
-        <Button>
+        <Button
+          onClick={() => {
+            fetchData();
+          }}
+        >
           Найти
         </Button>
 
@@ -81,7 +93,7 @@ const Home = () => {
         // pagination={false}
         size='small'
 
-      />;
+      />
     </div>
   )
 }
