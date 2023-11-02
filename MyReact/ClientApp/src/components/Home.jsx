@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Space, Table, Input, Tooltip, Modal } from 'antd';
-import { FileAddOutlined } from '@ant-design/icons';
+import { FileAddOutlined, EditOutlined } from '@ant-design/icons';
 const columns = [
   {
     title: 'id',
@@ -26,7 +26,29 @@ const columns = [
     title: 'category_name',
     dataIndex: 'category_name',
     key: 'category_name'
-  }
+  },
+  {
+    title: 'Edit',
+    key: 'edit',
+    width: '3%',
+    render: (row) => {
+      return <>
+        <EditOutlined
+          onClick={(e) => {
+            e.preventDefault();
+
+            //setMode('edit');
+            //setRowId(row.id);
+
+            //setIsModalOpen(true);
+          }}
+          style={{
+            color: "green", marginLeft: 5
+          }}>
+        </EditOutlined>
+      </>
+    }
+  },
 ]
 
 const Home = () => {
@@ -45,11 +67,11 @@ const Home = () => {
       titleTemp = 'all';
     else
       titleTemp = title;
-
     const requestOptions = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' }
     };
+
     fetch(`http://localhost:5064/Book/BookGetAll/${titleTemp}`, requestOptions)
       .then(response => {
         return response.json()
@@ -104,7 +126,7 @@ const Home = () => {
           <Button
             icon={<FileAddOutlined />}
             onClick={() => {
-              fetchData();
+              setIsModalOpen(true);
             }}
             style={{
               color: 'green'
