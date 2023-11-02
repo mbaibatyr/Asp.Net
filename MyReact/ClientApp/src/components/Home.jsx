@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Space, Table, Input, Tooltip, Modal, message, notification } from 'antd';
+import { Button, Space, Table, Input, Tooltip, Modal, message, notification, Select } from 'antd';
 import { FileAddOutlined, EditOutlined } from '@ant-design/icons';
 import { Label } from 'reactstrap';
 
@@ -121,6 +121,28 @@ const Home = () => {
                 width: 300
               }}
             />
+          </Space>
+
+          <Space
+            direction='horizontal'
+          >
+            <Label>Автор</Label>
+            <Select
+              style={{
+                width: 150,
+              }}
+              showSearch
+              status="success"
+              //value={epicAdd}
+              optionFilterProp="children"
+              //onChange={handleChangeEpicAdd}
+              filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+            >
+              {/* {epicDataAdd.map((z) => (
+                <Option key={z.value}>{z.text}</Option>
+              ))} */}
+            </Select>
+
           </Space>
 
 
