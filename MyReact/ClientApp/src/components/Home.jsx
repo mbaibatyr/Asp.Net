@@ -61,8 +61,7 @@ const Home = () => {
   const [title, setTitle] = useState('');
 
   const [titleAdd, setTitleAdd] = useState('');
-
-
+  const [yearAdd, setYearAdd] = useState('');
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mode, setMode] = useState('');
@@ -126,10 +125,46 @@ const Home = () => {
           <Space
             direction='horizontal'
           >
+            <Label>Год</Label>
+            <Input
+              placeholder="Год издания"
+              value={yearAdd}
+              onChange={(e) => setYearAdd(e.target.value)}
+              style={{
+                width: 300
+              }}
+            />
+          </Space>
+
+          <Space
+            direction='horizontal'
+          >
             <Label>Автор</Label>
             <Select
               style={{
-                width: 150,
+                width: 300, marginLeft: 23
+              }}
+              showSearch
+              status="success"
+              //value={epicAdd}
+              optionFilterProp="children"
+              //onChange={handleChangeEpicAdd}
+              filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+            >
+              {/* {epicDataAdd.map((z) => (
+                <Option key={z.value}>{z.text}</Option>
+              ))} */}
+            </Select>
+
+          </Space>
+
+          <Space
+            direction='horizontal'
+          >
+            <Label>Категория</Label>
+            <Select
+              style={{
+                width: 300, marginLeft: 23
               }}
               showSearch
               status="success"
