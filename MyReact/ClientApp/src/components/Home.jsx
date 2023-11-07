@@ -63,8 +63,9 @@ const Home = () => {
           <Popconfirm
             title="Are you sure to delete this book?"
             description={row.title + ' - ' + row.year}
-            onConfirm={confirm}
-            //onCancel={cancel}
+            onConfirm={() =>
+              confirm(row.id)
+            }
             okText="Yes"
             cancelText="No"
           >
@@ -74,8 +75,6 @@ const Home = () => {
               }}>
             </CloseOutlined>
           </Popconfirm>
-
-
         </>
       }
     },
@@ -104,9 +103,21 @@ const Home = () => {
   const [mode, setMode] = useState('');
   const [rowId, setRowId] = useState('');
 
-  const confirm = (e) => {
-    console.log(e);
-    message.success('Click on Yes');
+  function confirm(id) {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    };
+
+    fetch(`http://localhost:5064/Book/BookDelete/${id}`, requestOptions)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        message.success(data.result);
+        fetchData();
+      })
+
   };
 
   const BookAddOrEdit = () => {
@@ -138,9 +149,7 @@ const Home = () => {
     if (mode == 'edit') {
       id = rowId;
     }
-    console.warn(id);
-    console.warn(mode);
-    return;
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -151,7 +160,6 @@ const Home = () => {
         return response.json()
       })
       .then(data => {
-        console.warn(data);
         if (data.status == '1') {
           notification.info({
             message: "Info",
