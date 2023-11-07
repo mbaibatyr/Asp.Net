@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Space, Table, Input, Tooltip, Modal, message, notification, Select } from 'antd';
-import { FileAddOutlined, EditOutlined } from '@ant-design/icons';
+import { Button, Space, Table, Input, Tooltip, Modal, message, Popconfirm, notification, Select } from 'antd';
+import { FileAddOutlined, EditOutlined, CloseOutlined } from '@ant-design/icons';
 import { Label } from 'reactstrap';
 const { Option } = Select;
 
@@ -54,6 +54,31 @@ const Home = () => {
         </>
       }
     },
+    {
+      title: 'Delete',
+      key: 'delete',
+      width: '3%',
+      render: (row) => {
+        return <>
+          <Popconfirm
+            title="Are you sure to delete this book?"
+            description={row.title + ' - ' + row.year}
+            onConfirm={confirm}
+            //onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            <CloseOutlined
+              style={{
+                color: "red", marginLeft: 15
+              }}>
+            </CloseOutlined>
+          </Popconfirm>
+
+
+        </>
+      }
+    },
   ]
   const [data, setData] = useState([]);
   const [title, setTitle] = useState('');
@@ -78,6 +103,12 @@ const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mode, setMode] = useState('');
   const [rowId, setRowId] = useState('');
+
+  const confirm = (e) => {
+    console.log(e);
+    message.success('Click on Yes');
+  };
+
   const BookAddOrEdit = () => {
     if (titleAdd == '' || titleAdd == null) {
       notification.error({
@@ -107,7 +138,9 @@ const Home = () => {
     if (mode == 'edit') {
       id = rowId;
     }
-
+    console.warn(id);
+    console.warn(mode);
+    return;
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
