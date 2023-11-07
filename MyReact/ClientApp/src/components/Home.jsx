@@ -98,59 +98,55 @@ const Home = () => {
         message: "Info",
         description: (
           <>
-            Status is empty
+            Year is empty
           </>
         )
       });
       return;
     }
-    setIsModalOpen(false);
 
-    // var id = 0;
-    // var rowExecIdTemp = '';
-    // if (mode == 'edit') {
-    //   id = rowId;
-    //   rowExecIdTemp = rowExecId
-    // }
-    // else
-    //   rowExecIdTemp = v_executor.current
 
-    // const requestOptions = {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ Id: id.toString(), sprint_id: sprint, epic_id: epicAdd, executor_id: rowExecIdTemp, point_id: pointsAdd, cost_avoidance: costAvAdd == '' ? '0' : costAvAdd, status_id: statusAdd, approval: approvalAdd == true ? '1' : '0', process: processAdd, mode: mode2 })
-    // };
-    // fetch(`Sprint/AddOrEditSprintData`, requestOptions)
-    //   .then(response => {
-    //     return response.json()
-    //   })
-    //   .then(data => {
-    //     if (data.status = '1') {
-    //       notification.info({
-    //         message: "Info",
-    //         description: (
-    //           <>
-    //             {data.result}
-    //           </>
-    //         )
-    //       });
-    //       if (data.result == 'ok') {
-    //         setIsModalVisible(false);
-    //         fetchData();
-    //       }
-    //     }
-    //     else {
-    //       notification.error({
-    //         message: "Error",
-    //         description: (
-    //           <>
-    //             {data.result}
-    //             {data.error}
-    //           </>
-    //         )
-    //       });
-    //     }
-    //   })
+    var id = 0;
+    if (mode == 'edit') {
+      id = rowId;
+    }
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id.toString(), title: titleAdd, author_id: authorAdd, year: yearAdd, category_id: catAdd })
+    };
+    fetch(`http://localhost:5064/Book/BookAddOrEdit`, requestOptions)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        if (data.status = '1') {
+          notification.info({
+            message: "Info",
+            description: (
+              <>
+                {data.result}
+              </>
+            )
+          });
+          if (data.result == 'ok') {
+            setIsModalOpen(false);
+            fetchData();
+          }
+        }
+        else {
+          notification.error({
+            message: "Error",
+            description: (
+              <>
+                {data.result}
+                {data.error}
+              </>
+            )
+          });
+        }
+      })
   }
 
   const fetchData = () => {
