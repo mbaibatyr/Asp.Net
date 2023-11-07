@@ -43,12 +43,9 @@ const Home = () => {
               setMode('edit');
               setRowId(row.id);
               setIsModalOpen(true);
-
-              notification.info({
-                message: "Info",
-                description: (row.id)
-              });
-
+              setTitleAdd(row.title);
+              setYearAdd(row.year);
+              BookGetById(row.id);
             }}
             style={{
               color: "green", marginLeft: 5
@@ -121,7 +118,8 @@ const Home = () => {
         return response.json()
       })
       .then(data => {
-        if (data.status = '1') {
+        console.warn(data);
+        if (data.status == '1') {
           notification.info({
             message: "Info",
             description: (
@@ -190,6 +188,22 @@ const Home = () => {
       })
       .then(data => {
         setCatDataAdd(data);
+      })
+  }
+
+  const BookGetById = (id) => {
+    const requestOptions = {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    };
+
+    fetch(`http://localhost:5064/Book/BookGetById/${id}`, requestOptions)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setCatAdd(data.category_id);
+        setAuthorAdd(data.author_id);
       })
   }
 
@@ -314,6 +328,8 @@ const Home = () => {
             icon={<FileAddOutlined />}
             onClick={() => {
               setMode('add');
+              setTitleAdd('');
+              setYearAdd('');
               setIsModalOpen(true);
             }}
             style={{
