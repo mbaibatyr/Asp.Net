@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication;
+using MyBasicAuth.Service;
+
 namespace MyBasicAuth
 {
     public class Program
@@ -9,6 +12,11 @@ namespace MyBasicAuth
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddAuthentication("BasicAuthentication")
+               .AddScheme<AuthenticationSchemeOptions, BasicAuth>("BasicAuthentication", null);
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -22,6 +30,7 @@ namespace MyBasicAuth
                 app.UseSwaggerUI();
             }
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 
