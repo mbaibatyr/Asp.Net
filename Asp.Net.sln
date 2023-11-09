@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddConsole", "AddConsole\Ad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyLibrary", "MyLibrary\MyLibrary.csproj", "{40C85863-F572-47D4-B719-49375A9B4786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyReact", "MyReact\MyReact.csproj", "{6085A694-1EA3-4707-AA05-84BF6A680253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyReact", "MyReact\MyReact.csproj", "{6085A694-1EA3-4707-AA05-84BF6A680253}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBasicAuth", "MyBasicAuth\MyBasicAuth.csproj", "{A9B28F4B-E71A-4D40-9A99-BA163593F085}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{6085A694-1EA3-4707-AA05-84BF6A680253}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6085A694-1EA3-4707-AA05-84BF6A680253}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6085A694-1EA3-4707-AA05-84BF6A680253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9B28F4B-E71A-4D40-9A99-BA163593F085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9B28F4B-E71A-4D40-9A99-BA163593F085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9B28F4B-E71A-4D40-9A99-BA163593F085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9B28F4B-E71A-4D40-9A99-BA163593F085}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
