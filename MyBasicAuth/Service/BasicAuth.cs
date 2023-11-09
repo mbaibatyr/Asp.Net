@@ -1,6 +1,9 @@
-﻿namespace MyBasicAuth.Service
+﻿using Microsoft.AspNetCore.Authentication;
+
+namespace MyBasicAuth.Service
 {
-    public class BasicAuth
+    public class BasicAuth : AuthenticationHandler<AuthenticationSchemeOptions>
     {
+      
     }
 }
