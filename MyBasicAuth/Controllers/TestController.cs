@@ -14,5 +14,13 @@ namespace MyBasicAuth.Controllers
         {
             return Ok("Hello " + name);
         }
+
+
+        [HttpGet, Route("getHello2/{name}")]
+        [AllowAnonymous]
+        public ActionResult getHello2(string name)
+        {
+            return Ok("Hello2 " + name);
+        }
     }
 }
