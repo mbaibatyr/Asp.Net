@@ -2,11 +2,10 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-//using System.Text.Json;
-//using System.Text.Json.Serialization;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
+using System.Text;
 
 namespace ConsoleTest
 {
@@ -122,10 +121,67 @@ namespace ConsoleTest
             
         }
 
+        //public string DoEncrypt(string Text, string Key)
+        //{
+        //    if (string.IsNullOrEmpty(Text))
+        //        return "";
+
+        //    byte[] initialVectorBytes = Encoding.ASCII.GetBytes("16CHARSLONG12345");
+        //    byte[] saltValueBytes = Encoding.ASCII.GetBytes("123456789");
+        //    byte[] plainTextBytes = Encoding.UTF8.GetBytes(Text);
+
+        //    PasswordDeriveBytes derivedPassword = new PasswordDeriveBytes(Key, saltValueBytes, "SHA1", 2);
+        //    byte[] keyBytes = derivedPassword.GetBytes(256 / 8);
+        //    RijndaelManaged symmetricKey = new RijndaelManaged();
+        //    symmetricKey.Mode = CipherMode.CBC;
+
+        //    byte[] cipherTextBytes = null;
+
+        //    using (ICryptoTransform encryptor = symmetricKey.CreateEncryptor(keyBytes, initialVectorBytes))
+        //    {
+        //        using (MemoryStream memStream = new MemoryStream())
+        //        {
+        //            using (System.Security.Cryptography.CryptoStream cryptoStream = new CryptoStream(memStream, encryptor, CryptoStreamMode.Write))
+        //            {
+        //                cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
+        //                cryptoStream.FlushFinalBlock();
+        //                cipherTextBytes = memStream.ToArray();
+        //                memStream.Close();
+        //                cryptoStream.Close();
+        //            }
+        //        }
+        //    }
+        //    symmetricKey.Clear();
+        //    return Convert.ToBase64String(cipherTextBytes);
+        //}
+
 
         static void Main(string[] args)
         {
-            PostSample();
+            //PostSample();
+
+            List<test> lst = new List<test>()
+            {
+                new test(){ id="1", name = "111"},
+                new test(){ id="2", name = "222"},
+                new test(){ id="3", name = "333"}
+            };
+            
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("id;name");
+            foreach (var item in lst)
+            {
+                sb.AppendLine($"{item.id};{item.name}");
+            }
+
+            var bytes = Encoding.UTF8.GetBytes(sb.ToString());
+
         }
+    }
+
+    public class test
+    {
+        public string id { get; set; }
+        public string name { get; set; }
     }
 }
