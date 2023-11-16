@@ -35,7 +35,9 @@ namespace MyJWT_Auth.Controllers
             {
                 DynamicParameters p = new DynamicParameters(model);
                 int count = db.ExecuteScalar<int>("pUserValidate", p, commandType:CommandType.StoredProcedure);
-            }
+                if (count == 0)
+                    return Unauthorized("Гуляй Вася");
+            }           
 
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
