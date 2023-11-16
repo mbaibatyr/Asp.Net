@@ -5,11 +5,11 @@ using Microsoft.IdentityModel.Tokens;
 namespace MyJWT_Auth
 {
     public class Program
-    {
+    {        
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            var configuration = builder.Configuration;
 
             builder.Services.AddAuthentication(z =>
             {
@@ -17,16 +17,16 @@ namespace MyJWT_Auth
                 z.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(o =>
             {
-                var Key = Encoding.UTF8.GetBytes("123456");
+                var Key = Encoding.UTF8.GetBytes(configuration["JWT:Key"]);
                 o.SaveToken = true;
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = false,
+                    ValidateIssuer = true,
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    //ValidIssuer = Configuration["JWT:Issuer"],
-                    //ValidAudience = Configuration["JWT:Audience"],
+                    ValidIssuer = configuration["JWT:Issuer"],
+                    //ValidAudience = configuration["JWT:Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(Key)
                 };
             });
