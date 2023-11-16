@@ -5,6 +5,12 @@ using Microsoft.IdentityModel.Tokens;
 using MyJWT_Auth.Model;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+using Dapper;
+
+
+
 
 namespace MyJWT_Auth.Controllers
 {
@@ -25,6 +31,13 @@ namespace MyJWT_Auth.Controllers
         [HttpPost, Route("GetToken")]
         public ActionResult GetToken(UserModel model)
         {
+            using (SqlConnection db = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\байбатыровм\Documents\testDB.mdf;Integrated Security=True;Connect Timeout=30"))
+            {
+                DynamicParameters p = new DynamicParameters(model);
+                int count = db.ExecuteScalar<int>("pUserValidate", p, commandType:CommandType.StoredProcedure);
+            }
+
+
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
