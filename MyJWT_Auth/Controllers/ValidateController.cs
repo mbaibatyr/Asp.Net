@@ -42,7 +42,8 @@ namespace MyJWT_Auth.Controllers
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
                   var claims = new[] {
-                      new Claim("role", "admin,report1,editor")
+                      new Claim("role", "admin,report1,editor"),
+                      new Claim("dateBirth", "2000-01-01")
             //    new Claim(JwtRegisteredClaimNames.Sub, userInfo.Username),
             //    new Claim(JwtRegisteredClaimNames.Email, userInfo.EmailAddress),
             //    new Claim("DateOfJoing", userInfo.DateOfJoing.ToString("yyyy-MM-dd")),
