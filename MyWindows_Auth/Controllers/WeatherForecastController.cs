@@ -21,9 +21,7 @@ namespace MyWindows_Auth.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            var login = HttpContext.User.Identity.Name;
-
-            return Unauthorized();
+            
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
