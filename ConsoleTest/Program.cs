@@ -117,8 +117,8 @@ namespace ConsoleTest
             {
                 string Content = File.ReadAllText(@"C:\Users\байбатыровм\Desktop\json_sample_2.json");
                 RootPostResponse result = JsonConvert.DeserializeObject<RootPostResponse>(Content);
-            } 
-            
+            }
+
         }
 
         //public string DoEncrypt(string Text, string Key)
@@ -156,21 +156,31 @@ namespace ConsoleTest
         //}
 
 
-        static void CallWebAPi()
+        static string getToken()
         {
-            //var options = new RestClientOptions("")
-            //{
-            //    MaxTimeout = -1,
-            //};
             var client = new RestClient();
             var request = new RestRequest("http://localhost:5243/Validate/GetToken", Method.Post);
             request.AddHeader("Content-Type", "application/json");
             var body = new
             {
                 email = "admin",
-                psw= "1234"
-            };            
+                psw = "1234"
+            };
             request.AddJsonBody(body);
+            RestResponse response = client.Execute(request);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                dynamic json = JObject.Parse(response.Content);
+                return json.result;
+            }
+            return null;
+        }
+
+        static void Data(string token)
+        {
+            var client = new RestClient();
+            var request = new RestRequest("http://localhost:5243/WeatherForecast", Method.Get);
+            request.AddHeader("Authorization", "Bearer " + token);
             RestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
         }
@@ -178,7 +188,11 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
 
-            CallWebAPi();
+            var token = getToken();
+
+            Console.WriteLine(token);
+            
+
             //PostSample();
 
             //List<test> lst = new List<test>()
