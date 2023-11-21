@@ -8,9 +8,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
-
-
-
+using System.Security.Claims;
 
 namespace MyJWT_Auth.Controllers
 {
@@ -43,17 +41,18 @@ namespace MyJWT_Auth.Controllers
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
-            //        var claims = new[] {
+                  var claims = new[] {
+                      new Claim("role", "admin,report1,editor")
             //    new Claim(JwtRegisteredClaimNames.Sub, userInfo.Username),
             //    new Claim(JwtRegisteredClaimNames.Email, userInfo.EmailAddress),
             //    new Claim("DateOfJoing", userInfo.DateOfJoing.ToString("yyyy-MM-dd")),
             //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            //};
+            };
 
             var token = new JwtSecurityToken(configuration["Jwt:Issuer"],
                 configuration["Jwt:Issuer"],
-                //claims,
-                null,
+                claims,
+                //null,
                 expires: DateTime.Now.AddMinutes(5),
                 signingCredentials: credentials);
 

@@ -24,6 +24,10 @@ namespace MyJWT_Auth.Controllers
         //[AllowAnonymous]
         public IEnumerable<WeatherForecast> Get()
         {
+            var currentUser = HttpContext.User;
+            var cl = currentUser.Claims;//.FirstOrDefault(c => c.Type == "DateOfJoing").Value);
+            
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
