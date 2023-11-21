@@ -52,8 +52,8 @@ namespace MyJWT_Auth.Controllers
 
             var token = new JwtSecurityToken(configuration["Jwt:Issuer"],
                 configuration["Jwt:Issuer"],
-                claims,
-                //null,
+                //claims,
+                null,
                 expires: DateTime.Now.AddMinutes(5),
                 signingCredentials: credentials);
 
@@ -68,7 +68,17 @@ namespace MyJWT_Auth.Controllers
             return Ok(result);
         }
     }
-
-
-
 }
+
+/*
+ 
+CREATE proc pUserValidate
+@email varchar(500),
+@psw nvarchar(100)
+as
+select count(*)
+from users
+where email = @email
+and psw = @psw
+
+*/
