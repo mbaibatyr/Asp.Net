@@ -156,25 +156,46 @@ namespace ConsoleTest
         //}
 
 
+        static void CallWebAPi()
+        {
+            //var options = new RestClientOptions("")
+            //{
+            //    MaxTimeout = -1,
+            //};
+            var client = new RestClient();
+            var request = new RestRequest("http://localhost:5243/Validate/GetToken", Method.Post);
+            request.AddHeader("Content-Type", "application/json");
+            var body = new
+            {
+                email = "admin",
+                psw= "1234"
+            };            
+            request.AddJsonBody(body);
+            RestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+        }
+
         static void Main(string[] args)
         {
+
+            CallWebAPi();
             //PostSample();
 
-            List<test> lst = new List<test>()
-            {
-                new test(){ id="1", name = "111"},
-                new test(){ id="2", name = "222"},
-                new test(){ id="3", name = "333"}
-            };
-            
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("id;name");
-            foreach (var item in lst)
-            {
-                sb.AppendLine($"{item.id};{item.name}");
-            }
+            //List<test> lst = new List<test>()
+            //{
+            //    new test(){ id="1", name = "111"},
+            //    new test(){ id="2", name = "222"},
+            //    new test(){ id="3", name = "333"}
+            //};
 
-            var bytes = Encoding.UTF8.GetBytes(sb.ToString());
+            //StringBuilder sb = new StringBuilder();
+            //sb.AppendLine("id;name");
+            //foreach (var item in lst)
+            //{
+            //    sb.AppendLine($"{item.id};{item.name}");
+            //}
+
+            //var bytes = Encoding.UTF8.GetBytes(sb.ToString());
 
         }
     }
