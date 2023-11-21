@@ -176,7 +176,7 @@ namespace ConsoleTest
             return null;
         }
 
-        static void Data(string token)
+        static void getData(string token)
         {
             var client = new RestClient();
             var request = new RestRequest("http://localhost:5243/WeatherForecast", Method.Get);
@@ -187,10 +187,9 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
-
             var token = getToken();
-
-            Console.WriteLine(token);
+            getData(token);
+            
             
 
             //PostSample();
