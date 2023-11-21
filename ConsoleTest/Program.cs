@@ -182,7 +182,11 @@ namespace ConsoleTest
             var request = new RestRequest("http://localhost:5243/WeatherForecast", Method.Get);
             request.AddHeader("Authorization", "Bearer " + token);
             RestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            var jArray = JArray.Parse(response.Content);
+            for (int i = 0; i < jArray.Count; i++)
+            {
+                Console.WriteLine(jArray[i].ToString());
+            }
         }
 
         static void Main(string[] args)
