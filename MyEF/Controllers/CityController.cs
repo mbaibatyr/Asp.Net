@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyEF.Abstract;
+using MyEF.Model;
 using MyEF.Service;
 
 namespace MyEF.Controllers
@@ -17,8 +18,14 @@ namespace MyEF.Controllers
 
         [HttpGet, Route("getAll")]
         public ActionResult getAll()
-        {
+        {            
             return Ok(service.getAll());
+        }
+
+        [HttpPost, Route("add")]
+        public ActionResult add(City model)
+        {
+            return Ok(service.add(model));
         }
     }
 }

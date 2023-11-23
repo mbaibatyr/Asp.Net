@@ -11,6 +11,14 @@ namespace MyEF.Service
         {
             db = new Context();
         }
+
+        public string add(City model)
+        {
+            db.City.Add(model);
+            db.SaveChanges();
+            return "ok";
+        }
+
         public IEnumerable<City> getAll()
         {
             return db.City.ToList();
