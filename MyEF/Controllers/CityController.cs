@@ -27,5 +27,23 @@ namespace MyEF.Controllers
         {
             return Ok(service.add(model));
         }
+
+        [HttpGet, Route("getCityById/{id}")]
+        public ActionResult getCityById(int id)
+        {
+            return Ok(service.getCityById(id));
+        }
+
+        [HttpGet, Route("getCityByName/{name}")]
+        public ActionResult getCityByName(string name)
+        {
+            return Ok(service.getCityByName(name));
+        }
+
+        [HttpPut, Route("edit")]
+        public ActionResult edit(City model)
+        {
+            return Ok(service.edit(model));
+        }
     }
 }
