@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBasicAuth", "MyBasicAuth\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyJWT_Auth", "MyJWT_Auth\MyJWT_Auth.csproj", "{D7016770-83C9-4003-A000-4C9B86161FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWindows_Auth", "MyWindows_Auth\MyWindows_Auth.csproj", "{D6A09C38-6190-450F-A937-422DFE6E7AE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWindows_Auth", "MyWindows_Auth\MyWindows_Auth.csproj", "{D6A09C38-6190-450F-A937-422DFE6E7AE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEF", "MyEF\MyEF.csproj", "{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{D6A09C38-6190-450F-A937-422DFE6E7AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6A09C38-6190-450F-A937-422DFE6E7AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6A09C38-6190-450F-A937-422DFE6E7AE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
