@@ -1,3 +1,6 @@
+using MyEF.Abstract;
+using MyEF.Service;
+
 namespace MyEF
 {
     public class Program
@@ -7,6 +10,7 @@ namespace MyEF
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddScoped<ICity, CityService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
