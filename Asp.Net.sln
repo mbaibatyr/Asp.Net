@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyJWT_Auth", "MyJWT_Auth\My
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyWindows_Auth", "MyWindows_Auth\MyWindows_Auth.csproj", "{D6A09C38-6190-450F-A937-422DFE6E7AE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyEF", "MyEF\MyEF.csproj", "{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEF", "MyEF\MyEF.csproj", "{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySOAP", "MySOAP\MySOAP.csproj", "{0B7A0F15-B032-4752-A3F0-F9A5DAF98BCA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0360E2F-E1F8-458C-BCDC-5988ADDF89E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B7A0F15-B032-4752-A3F0-F9A5DAF98BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7A0F15-B032-4752-A3F0-F9A5DAF98BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7A0F15-B032-4752-A3F0-F9A5DAF98BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7A0F15-B032-4752-A3F0-F9A5DAF98BCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
