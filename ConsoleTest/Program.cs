@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using Dapper;
 using System.Text;
+using MyService;
 
 namespace ConsoleTest
 {
@@ -191,10 +192,18 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
-            var token = getToken();
-            getData(token);
-            
-            
+            SoapServiceSoapClient.EndpointConfiguration config =
+                SoapServiceSoapClient.EndpointConfiguration.SoapServiceSoap;
+
+            SoapServiceSoapClient client = new SoapServiceSoapClient(config);
+            var res = client.HelloWorldAsync("step__666");
+            Console.WriteLine(res.Result.Body.HelloWorldResult);
+
+
+
+
+            //var token = getToken();
+            //getData(token);
 
             //PostSample();
 
