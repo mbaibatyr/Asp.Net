@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using serv;
 using System.Data;
 
 namespace AddConsole
@@ -40,7 +41,13 @@ namespace AddConsole
         {
             //JsonToDataTable();
             //JsonToClass();
-            JsonToArray();
+            //JsonToArray();
+            MyServSoapClient.EndpointConfiguration config = MyServSoapClient.EndpointConfiguration.MyServSoap12;
+            MyServSoapClient client = new MyServSoapClient(config);
+            var res = client.HelloWorldAsync("step666");
+            Console.WriteLine(res.Result.Body.HelloWorldResult);
+            Console.ReadLine();
+
         }
     }
 
